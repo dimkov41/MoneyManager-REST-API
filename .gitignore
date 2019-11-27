@@ -1,0 +1,16 @@
+out
+build
+target
+.idea
+.gradle
+*.iml*
+*log
+*log.*
+*tmp
+*.classpath*
+*.project*
+*.settings*
+nohup.out
+*.sublime-project
+*.sublime-workspace
+node_modules/

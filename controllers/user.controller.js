@@ -74,25 +74,19 @@ module.exports = {
 
         register: (req, res) => {
             const {username, password, repeatPassword, amount} = req.body;
-
-            const errors = validationResult(req);
+            console.log(req.body);
             if (!username || !password || !repeatPassword || !amount) {
-                res.render('registerPage.hbs', {error: 'Please, fill all fields'});
+                res.status(500).send( {error: 'Please, fill all fields'} );
             } else if (!errors.isEmpty()) {
-                res.render('registerPage.hbs', {
-                    error: errors.array()[0].msg,
-                })
+                res.status(500).send( {error: errors.array()[0].msg} );
             } else if(amount < 0){
-                res.render('registerPage.hbs', {error: 'Amount should be positive number'});
+                res.status(500).send( {error: 'Amount should be positive number'} )
             } else if (password !== repeatPassword) {
-                res.render('registerPage.hbs', {error: 'Passwords does not match'});
+                res.status(500).send( {error: 'Passwords does not match'} );
             } else {
                 models.User.create({username, password, amount}).then((registeredUser) => {
                     const token = jwt.createToken({id: registeredUser._id});
-
-                    res
-                        .cookie(config.cookie, token)
-                        .redirect('/');
+                    res.status(200).send({token})
                 })
             }
         },

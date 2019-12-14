@@ -88,6 +88,12 @@ module.exports = {
                 models.User.create({username, password, amount}).then((registeredUser) => {
                     const token = jwt.createToken({id: registeredUser._id});
                     res.status(200).send({token})
+                }).catch((err) => {
+                    if(err.keyPattern.username != null){
+                        res.status(500).send({error: "Username Already exists"});
+                        return;
+                    }
+                    res.status(500).send({error: "Database Error"});
                 })
             }
         },

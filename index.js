@@ -7,6 +7,5 @@ require('./config/database.config')().then(() => {
     require('./config/express.config')(app);
     require('./config/routes.config')(app);
 
-    app.use(bodyParser.json());
     app.listen(3000, console.log(`***Server is ready! Listening on port: ${config.port}...***`));
 });

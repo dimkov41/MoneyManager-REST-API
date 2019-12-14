@@ -74,6 +74,7 @@ module.exports = {
 
         register: (req, res) => {
             const {username, password, repeatPassword, amount} = req.body;
+            const errors = validationResult(req);
             console.log(req.body);
             if (!username || !password || !repeatPassword || !amount) {
                 res.status(500).send( {error: 'Please, fill all fields'} );

@@ -28,17 +28,6 @@ const expenseSchema = new Schema({
         max: [50, "Description should be less than 50 characters long..."]
     },
 
-    category: {
-        type: String,
-        required: true
-    },
-
-    report: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
-
     creator: {
         type: ObjectId,
         ref: 'User'

@@ -5,7 +5,7 @@ const userValidator = require('../utils/userValidator');
 
 router.get('/login', controllers.user.get.login);
 
-router.get('/profile', auth(), controllers.user.get.profile);
+router.post('/profile', auth(), controllers.user.post.profile);
 
 router.get('/register', controllers.user.get.register);
 

@@ -4,7 +4,8 @@ const models = require('../models/models');
 
 function auth(redirectUnauthenticated = true) {
     return function (req, res, next) {
-        const token = req.cookies[config.cookie] || '';
+        console.log(req.body)
+        const token = req.body.token || '';
         Promise.all([
             jwt.verifyToken(token),
         ]).then(([data]) => {
